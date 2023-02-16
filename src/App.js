@@ -1,23 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { Container, Button } from 'reactstrap';
+import { ToastContainer } from 'react-toastify';
+import Header from './components/Header';
+import Home from './components/Home';
+import AllCourses from './components/AllCourses';
+import AddCourses from './components/AddCourses';
+import { Row, Col } from 'reactstrap';
+import SideMenu from './components/SideMenu';
+import { BrowserRouter as Router, Route, Link, Routes } from 'react-router-dom';
+import About from './components/About';
 
 function App() {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Router>
+        <ToastContainer />
+        <Container>
+          <Header />
+          <Row className="text-center">
+            <Col md={4}>
+              <SideMenu />
+            </Col>
+            <Col md={8}>
+              <Routes>
+              <Route exact path="/"element={<Home />} />
+             
+              <Route path="/add-courses"element={<AddCourses />} />
+              <Route path="/view-courses"element={<AllCourses />} />
+              <Route path="/about" element ={<About />} />
+              </Routes>
+            </Col>
+          </Row>
+        </Container>
+      </Router>
     </div>
   );
 }
